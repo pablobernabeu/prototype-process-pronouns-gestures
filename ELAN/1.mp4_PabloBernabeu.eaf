@@ -1,39 +1,103 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ANNOTATION_DOCUMENT AUTHOR="" DATE="2025-03-06T19:46:13+01:00"
+<ANNOTATION_DOCUMENT AUTHOR="" DATE="2025-03-10T00:21:41+01:00"
     FORMAT="3.0" VERSION="3.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.mpi.nl/tools/elan/EAFv3.0.xsd">
     <HEADER MEDIA_FILE="" TIME_UNITS="milliseconds">
         <MEDIA_DESCRIPTOR
-            MEDIA_URL="file:///C:/Users/pbe044/Dropbox/XLinC task/mnt/primary data/video/1.mp4"
-            MIME_TYPE="video/mp4" RELATIVE_MEDIA_URL="./mnt/primary data/video/1.mp4"/>
+            MEDIA_URL="file:///C:/Users/pbe044/OneDrive - UiT Office 365/Documents/GitHub/gesture-processing-prototype/mnt/primary data/video/1.mp4"
+            MIME_TYPE="video/mp4" RELATIVE_MEDIA_URL="../mnt/primary data/video/1.mp4"/>
         <MEDIA_DESCRIPTOR
-            EXTRACTED_FROM="file:///C:/Users/pbe044/Dropbox/XLinC task/mnt/primary data/video/1.mp4"
-            MEDIA_URL="file:///C:/Users/pbe044/Dropbox/XLinC task/mnt/primary data/audio/1.wav"
-            MIME_TYPE="audio/x-wav" RELATIVE_MEDIA_URL="./mnt/primary data/audio/1.wav"/>
+            EXTRACTED_FROM="file:///C:/Users/pbe044/OneDrive - UiT Office 365/Documents/GitHub/gesture-processing-prototype/mnt/primary data/video/1.mp4"
+            MEDIA_URL="file:///C:/Users/pbe044/OneDrive - UiT Office 365/Documents/GitHub/gesture-processing-prototype/mnt/primary data/audio/1.wav"
+            MIME_TYPE="audio/x-wav" RELATIVE_MEDIA_URL="../mnt/primary data/audio/1.wav"/>
         <PROPERTY NAME="URN">urn:nl-mpi-tools-elan-eaf:4fc697ec-2660-47cc-a9fd-b6a09027c62a</PROPERTY>
-        <PROPERTY NAME="lastUsedAnnotationId">2</PROPERTY>
+        <PROPERTY NAME="lastUsedAnnotationId">11</PROPERTY>
     </HEADER>
     <TIME_ORDER>
         <TIME_SLOT TIME_SLOT_ID="ts1" TIME_VALUE="12003"/>
         <TIME_SLOT TIME_SLOT_ID="ts2" TIME_VALUE="12500"/>
         <TIME_SLOT TIME_SLOT_ID="ts3" TIME_VALUE="12635"/>
-        <TIME_SLOT TIME_SLOT_ID="ts4" TIME_VALUE="12775"/>
+        <TIME_SLOT TIME_SLOT_ID="ts4" TIME_VALUE="12815"/>
+        <TIME_SLOT TIME_SLOT_ID="ts5" TIME_VALUE="15099"/>
+        <TIME_SLOT TIME_SLOT_ID="ts6" TIME_VALUE="15478"/>
+        <TIME_SLOT TIME_SLOT_ID="ts7" TIME_VALUE="15795"/>
+        <TIME_SLOT TIME_SLOT_ID="ts8" TIME_VALUE="16060"/>
+        <TIME_SLOT TIME_SLOT_ID="ts9" TIME_VALUE="20917"/>
+        <TIME_SLOT TIME_SLOT_ID="ts10" TIME_VALUE="21016"/>
+        <TIME_SLOT TIME_SLOT_ID="ts11" TIME_VALUE="21596"/>
+        <TIME_SLOT TIME_SLOT_ID="ts12" TIME_VALUE="21774"/>
+        <TIME_SLOT TIME_SLOT_ID="ts13" TIME_VALUE="33656"/>
+        <TIME_SLOT TIME_SLOT_ID="ts14" TIME_VALUE="33885"/>
+        <TIME_SLOT TIME_SLOT_ID="ts15" TIME_VALUE="34901"/>
+        <TIME_SLOT TIME_SLOT_ID="ts16" TIME_VALUE="34969"/>
+        <TIME_SLOT TIME_SLOT_ID="ts17" TIME_VALUE="35058"/>
+        <TIME_SLOT TIME_SLOT_ID="ts18" TIME_VALUE="35060"/>
+        <TIME_SLOT TIME_SLOT_ID="ts19" TIME_VALUE="40632"/>
+        <TIME_SLOT TIME_SLOT_ID="ts20" TIME_VALUE="40838"/>
     </TIME_ORDER>
     <TIER ANNOTATOR="PabloBernabeu" LINGUISTIC_TYPE_REF="default-lt"
-        PARTICIPANT="1" TIER_ID="speech">
+        PARTICIPANT="1" TIER_ID="demonstrative_pronoun">
         <ANNOTATION>
             <ALIGNABLE_ANNOTATION ANNOTATION_ID="a1"
                 TIME_SLOT_REF1="ts3" TIME_SLOT_REF2="ts4">
-                <ANNOTATION_VALUE>das_1</ANNOTATION_VALUE>
+                <ANNOTATION_VALUE>das</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a3"
+                TIME_SLOT_REF1="ts5" TIME_SLOT_REF2="ts6">
+                <ANNOTATION_VALUE>dem</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a4"
+                TIME_SLOT_REF1="ts9" TIME_SLOT_REF2="ts10">
+                <ANNOTATION_VALUE>das</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a8"
+                TIME_SLOT_REF1="ts13" TIME_SLOT_REF2="ts14">
+                <ANNOTATION_VALUE>das</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a9"
+                TIME_SLOT_REF1="ts16" TIME_SLOT_REF2="ts18">
+                <ANNOTATION_VALUE>das</ANNOTATION_VALUE>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a10"
+                TIME_SLOT_REF1="ts19" TIME_SLOT_REF2="ts20">
+                <ANNOTATION_VALUE>das</ANNOTATION_VALUE>
             </ALIGNABLE_ANNOTATION>
         </ANNOTATION>
     </TIER>
     <TIER ANNOTATOR="PabloBernabeu" LINGUISTIC_TYPE_REF="default-lt"
-        PARTICIPANT="1" TIER_ID="gestures">
+        PARTICIPANT="1" TIER_ID="gesture_apex">
         <ANNOTATION>
-            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a2"
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a5"
                 TIME_SLOT_REF1="ts1" TIME_SLOT_REF2="ts2">
-                <ANNOTATION_VALUE>das1</ANNOTATION_VALUE>
+                <ANNOTATION_VALUE/>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a6"
+                TIME_SLOT_REF1="ts7" TIME_SLOT_REF2="ts8">
+                <ANNOTATION_VALUE/>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a7"
+                TIME_SLOT_REF1="ts11" TIME_SLOT_REF2="ts12">
+                <ANNOTATION_VALUE/>
+            </ALIGNABLE_ANNOTATION>
+        </ANNOTATION>
+        <ANNOTATION>
+            <ALIGNABLE_ANNOTATION ANNOTATION_ID="a11"
+                TIME_SLOT_REF1="ts15" TIME_SLOT_REF2="ts17">
+                <ANNOTATION_VALUE/>
             </ALIGNABLE_ANNOTATION>
         </ANNOTATION>
     </TIER>

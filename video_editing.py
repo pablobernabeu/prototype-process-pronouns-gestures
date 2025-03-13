@@ -1,4 +1,7 @@
 from moviepy.editor import VideoFileClip, AudioFileClip, TextClip, CompositeVideoClip
+from moviepy.config import change_settings
+import conf  # Import the conf.py file
+change_settings({"IMAGEMAGICK_BINARY": conf.IMAGEMAGICK_BINARY})
 import logging
 
 def merge_audio_video(video_path, audio_path, output_path):

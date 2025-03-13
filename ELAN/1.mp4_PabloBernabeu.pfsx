@@ -17,14 +17,24 @@
         <Boolean>true</Boolean>
     </pref>
     <pref key="MultiTierViewer.ActiveTierName">
-        <String>gestures</String>
+        <String>demonstrative_pronoun</String>
     </pref>
     <pref key="SelectionEndTime">
-        <Long>21770</Long>
+        <Long>12815</Long>
+    </pref>
+    <pref key="LayoutManager.MediaAreaHeight">
+        <Int>409</Int>
+    </pref>
+    <pref key="ExportTabDialog.SelectTiersMode">
+        <String>Tier</String>
     </pref>
     <pref key="SignalViewer.ZoomLevel">
-        <Float>310.0</Float>
+        <Float>230.99997</Float>
     </pref>
+    <prefList key="ExportTabDialog.TierOrder">
+        <String>demonstrative_pronoun</String>
+        <String>gesture_apex</String>
+    </prefList>
     <pref key="LayoutManager.CurrentMode">
         <Int>1</Int>
     </pref>
@@ -61,6 +71,10 @@
         </pref>
     </prefGroup>
     <prefGroup key="TierFonts"/>
+    <prefList key="ExportTabDialog.selectedTiers">
+        <String>demonstrative_pronoun</String>
+        <String>gesture_apex</String>
+    </prefList>
     <prefList key="CommentViewer.Columns.Order">
         <String>Start Time</String>
         <String>End Time</String>
@@ -83,10 +97,10 @@
         <Boolean>false</Boolean>
     </pref>
     <pref key="TimeLineViewer.ZoomLevel">
-        <Float>310.0</Float>
+        <Float>230.99997</Float>
     </pref>
     <pref key="SelectionBeginTime">
-        <Long>12500</Long>
+        <Long>12635</Long>
     </pref>
     <prefList key="MultiTierViewer.HiddenTiers"/>
     <prefGroup key="BAS - WebMAUS Basic">
@@ -101,29 +115,29 @@
             <String>runMAUSBasic</String>
         </pref>
         <pref key="SignalUrl">
-            <String>C:/Users/pbe044/Dropbox/XLinC task/mnt/primary data/audio/1.wav</String>
+            <String>C:/Users/pbe044/OneDrive - UiT Office 365/Documents/GitHub/gesture-processing-prototype/mnt/primary data/audio/1.wav</String>
         </pref>
         <pref key="TextParamName">
             <String>TEXT</String>
         </pref>
     </prefGroup>
     <pref key="TimeScaleBeginTime">
-        <Long>20642</Long>
+        <Long>5260</Long>
     </pref>
     <pref key="MediaTime">
-        <Long>21770</Long>
+        <Long>12635</Long>
     </pref>
     <prefGroup key="TierColors">
-        <pref key="speech">
+        <pref key="demonstrative_pronoun">
             <Object class="java.awt.Color">90,0,0</Object>
         </pref>
-        <pref key="gestures">
+        <pref key="gesture_apex">
             <Object class="java.awt.Color">90,160,0</Object>
         </pref>
     </prefGroup>
     <prefList key="MultiTierViewer.TierOrder">
-        <String>speech</String>
-        <String>gestures</String>
+        <String>demonstrative_pronoun</String>
+        <String>gesture_apex</String>
     </prefList>
     <prefGroup key="IndividualPlayerVolumes">
         <pref key="1.wav">
@@ -141,4 +155,5 @@
         <String>Sender</String>
         <String>Recipient</String>
     </prefList>
+    <prefList key="ExportTabDialog.HiddenTiers"/>
 </preferences>

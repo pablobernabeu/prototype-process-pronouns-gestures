@@ -8,18 +8,19 @@ import matplotlib.pyplot as plt
 
 from audio_processing import transcribe_audio
 from video_processing import detect_multiple_gesture_apexes
-from alignment_analysis import extract_demonstrative_onsets, calculate_alignment
+from alignment_analysis import extract_target_word_onsets, calculate_alignment
 from video_editing import merge_audio_video, add_captions, signal_gesture_peaks
 
-def process_pair(audio_path, video_path, model_path, output_dir):
+def process_pair(audio_path, video_path, model_path, output_dir, max_time_diff):
     '''
     Processes a matching audio and video file pair.
-    1) Transcribes audio and extracts demonstrative onsets.
+    1) Transcribes audio and extracts target word onsets.
     2) Detects gesture apex(es).
     3) Calculates alignment.
     4) Exports CSV alignment data.
-    5) Merges audio/video, adds captions, signals gesture peaks.
-    6) Now also exports a plain text transcription and a WebVTT file.
+    5) 
+    6) Merges audio/video, adds captions, signals gesture peaks.
+    7) Now also exports a plain text transcription and a WebVTT file.
     '''
     
     # Step 1: Transcribe audio
@@ -47,7 +48,6 @@ def process_pair(audio_path, video_path, model_path, output_dir):
     
     # Export transcription to a WebVTT subtitle file.
     
-    # Helper function to convert float seconds to WebVTT time format.
     def sec_to_timestamp(seconds):
         import math
         hours = int(seconds // 3600)
@@ -55,20 +55,16 @@ def process_pair(audio_path, video_path, model_path, output_dir):
         secs = seconds % 60
         msecs = int(round((secs - int(secs)) * 1000))
         secs_int = int(secs)
-        # Format: HH:MM:SS.mmm
         return f"{hours:02d}:{minutes:02d}:{secs_int:02d}.{msecs:03d}"
     
     vtt = webvtt.WebVTT()
     
-    # Each segment with 'result' typically has a list of words with start/end times
     for segment in transcription_results:
-        # We'll create one caption per segment if it has timestamps
         if 'result' in segment and segment['result']:
             start_time = segment['result'][0].get('start', 0)
             end_time = segment['result'][-1].get('end', start_time)
             text = segment.get('text', '')
             
-            # Only add a caption if there's actual text
             if text:
                 caption = webvtt.Caption(
                     start=sec_to_timestamp(start_time),
@@ -82,27 +78,63 @@ def process_pair(audio_path, video_path, model_path, output_dir):
     print(f"WebVTT captions saved to {vtt_path}")
     
     # Step 2: Extract (word, onset) pairs
-    word_onsets = extract_demonstrative_onsets(transcription_results)
+    word_onsets = extract_target_word_onsets(transcription_results)
     
     # Step 3: Detect one or multiple gesture apexes
     gesture_apex_times = detect_multiple_gesture_apexes(video_path)  
     
-    # Step 4: For each demonstrative onset, find the nearest apex using absolute difference 
-    # and compute alignment difference using raw difference.
+    # Step 4: Compute alignment difference
     df_rows = []
-    for (demonstrative_word, onset_time) in word_onsets:
-        if gesture_apex_times:
-            nearest_apex = min(gesture_apex_times, key=lambda apex: abs(onset_time - apex))
+    used_apexes = set()  
+    
+    # Step 5: Prepare correct context extraction
+
+    df_rows = []
+    used_apexes = set()
+
+    # Create a structured list of transcript chunks [(start_time, end_time, text)]
+    transcript_chunks = [
+        (segment['result'][0]['start'], segment['result'][-1]['end'], segment['text'])
+        for segment in transcription_results if 'result' in segment and segment['result']
+    ]
+
+    for target_word, onset_time in word_onsets:
+        matched_context = None
+
+        # Find the segment where the target word appears
+        for start_time, end_time, sentence in transcript_chunks:
+            if start_time <= onset_time <= end_time:
+                words = sentence.split()
+                if target_word in words:
+                    index = words.index(target_word)
+                    prev_word = words[index - 1] if index > 0 else ""
+                    next_word = words[index + 1] if index < len(words) - 1 else ""
+                    matched_context = f"{prev_word} {target_word} {next_word}".strip()
+                    break  # Stop at the first valid match
+
+        if not matched_context:
+            matched_context = target_word  # Fallback if no match is found
+
+        # Find the closest gesture apex
+        available_apexes = [
+            apex for apex in gesture_apex_times
+            if apex not in used_apexes and abs(onset_time - apex) <= max_time_diff
+        ]
+
+        if available_apexes:
+            nearest_apex = min(available_apexes, key=lambda apex: abs(onset_time - apex))
+            used_apexes.add(nearest_apex)
             alignment_diff = onset_time - nearest_apex
         else:
             nearest_apex = None
             alignment_diff = None
-        
+
         df_rows.append({
-            'demonstrative_word': demonstrative_word,
-            'demonstrative_onset': onset_time,
+            'target_word': target_word,
+            'target_word_onset': onset_time,
             'gesture_apex': nearest_apex,
-            'alignment_difference': alignment_diff
+            'alignment_difference': alignment_diff,
+            'target_word_context': matched_context
         })
     
     # Convert to a DataFrame
@@ -123,32 +155,30 @@ def process_pair(audio_path, video_path, model_path, output_dir):
     plt.savefig(hist_path)
     plt.close()
     
-    # Plot and save scatter plot.
-    
+    # Scatter plot.
     plt.figure(figsize=(10, 6))
-    plt.scatter(df['demonstrative_onset'], df['alignment_difference'], c='blue')
+    plt.scatter(df['target_word_onset'], df['alignment_difference'], c='blue')
         
-    # Annotate each point with the demonstrative_word
     for i, row in df.iterrows():
         plt.text(
-            row['demonstrative_onset'] + 1.5,  # small offset to the right
-            row['alignment_difference'] + 1.5, # small offset above
-            row['demonstrative_word'],
+            row['target_word_onset'] + 1.5,
+            row['alignment_difference'] + 1.5,
+            row['target_word'],
             fontsize=8
         )
 
-    plt.title('Demonstrative Onset vs Temporal Difference')
-    plt.xlabel('Demonstrative Onset (ms)')
+    plt.title('Target Word Onset vs Temporal Difference')
+    plt.xlabel('Target Word Onset (ms)')
     plt.ylabel('Temporal Difference (ms)')
     scatter_path = os.path.join(output_dir, f"{base_name}_scatter.png")
     plt.savefig(scatter_path)
     plt.close()
     
-    # Step 4: Merge audio into video.
+    # Step 6: Merge audio into video.
     merged_video_path = os.path.join(output_dir, f"{base_name}_merged.mp4")
     merge_audio_video(video_path, audio_path, merged_video_path)
     
-    # Step 5: Add captions from transcription results.
+    # Step 7: Add captions
     captions = []
     for segment in transcription_results:
         if 'result' in segment and segment['result']:
@@ -156,10 +186,11 @@ def process_pair(audio_path, video_path, model_path, output_dir):
             end_time = segment['result'][-1].get('end', 0)
             text = segment.get('text', '')
             captions.append((start_time, end_time, text))
+    
     captioned_video_path = os.path.join(output_dir, f"{base_name}_captioned.mp4")
     add_captions(merged_video_path, captions, captioned_video_path)
     
-    # Step 6: Signal gesture peaks on the video.
+    # Step 7: Signal gesture peaks on the video.
     final_video_path = os.path.join(output_dir, f"{base_name}_final.mp4")
     signal_gesture_peaks(captioned_video_path, gesture_apex_times, final_video_path)
     
@@ -175,6 +206,7 @@ def parse_arguments():
     parser.add_argument('--video_folder', required=True, help='Path to the folder containing video files (e.g. MP4)')
     parser.add_argument('--model', required=True, help='Path to the Vosk model directory')
     parser.add_argument('--output', required=True, help='Output directory for processed files')
+    parser.add_argument('--max_time_diff', type=int, default=2000, help='Maximum time difference (ms) between target word onset and gesture apex')  
     return parser.parse_args()
 
 def main():
@@ -184,7 +216,6 @@ def main():
     if not os.path.exists(args.output):
         os.makedirs(args.output)
     
-    # Find all audio files (e.g. 1.wav, 2.wav, …) in the audio folder.
     audio_files = sorted(glob.glob(os.path.join(args.audio_folder, '*.wav')))
     if not audio_files:
         logging.error("No audio files found in the specified folder.")
@@ -192,13 +223,11 @@ def main():
     
     for audio_file in audio_files:
         base_name = os.path.splitext(os.path.basename(audio_file))[0]
-        # Look for a matching video file (e.g. 1.mp4) in the video folder.
         video_file = os.path.join(args.video_folder, f"{base_name}.mp4")
         if not os.path.exists(video_file):
-            logging.warning(f"Matching video file for {base_name} not found in {args.video_folder}. Skipping.")
+            logging.warning(f"Matching video file for {base_name} not found. Skipping.")
             continue
-        process_pair(audio_file, video_file, args.model, args.output)
+        process_pair(audio_file, video_file, args.model, args.output, args.max_time_diff)
     
 if __name__ == '__main__':
     main()
-    

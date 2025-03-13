@@ -1,0 +1,9 @@
+modality,onset,offset,duration,demonstrative_pronoun,match_index,alignment_difference
+gesture_apex,12003,12500,497,NA,1,-632
+demonstrative_pronoun,12635,12815,180,das,1,-632
+demonstrative_pronoun,15099,15478,379,dem,2,696
+gesture_apex,15795,16060,265,NA,2,696
+demonstrative_pronoun,20917,21016,99,das,3,679
+gesture_apex,21596,21774,178,NA,3,679
+demonstrative_pronoun,33656,33885,229,das,4,1245
+gesture_apex,34901,35058,157,NA,4,1245
