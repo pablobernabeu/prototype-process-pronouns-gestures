@@ -1,3 +1,5 @@
 .venv
-mnt/primary data
+mnt/primary data/*/*.wav
+mnt/primary data/*/*.mp4
+mnt/primary data/vosk-model-de-0.21
 .Rproj.user
