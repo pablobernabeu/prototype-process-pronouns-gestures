@@ -3,6 +3,16 @@
 
 The current prototype is designed to analyse the temporal alignment of spoken demonstrative pronouns and pointing gestures in video recordings. The workflow integrates computer vision (via MediaPipe) for gesture detection and audio processing (via a language-specific speech recognition model) to extract relevant linguistic features. The pipeline comprises multiple scripts that handle different aspects of the processing, culminating in an enriched video with annotations of detected events.
 
+## Running the Program
+
+```
+python main.py --audio_folder "mnt/primary data/audio" \
+               --video_folder "mnt/primary data/video" \
+               --model "mnt/primary data/vosk-model-de-0.21" \
+               --output "mnt/output" \
+               --max_time_diff 800
+```
+
 ## Pipeline Overview
 
 ### 1. Audio Transcription & Word Onset Extraction (audio_processing.py)
