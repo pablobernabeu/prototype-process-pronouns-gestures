@@ -5,7 +5,7 @@ The current prototype is designed to analyse the temporal alignment of spoken de
 
 ## Running the Program
 
-Primary data must comprise a video and an audio file corresponding to the same recording. This data is to be placed in `mnt/primary data`. 
+The system requires primary data in the form of video and corresponding audio files, which should be placed in `mnt/primary data`. They video-audio pairs should be named in the same way (e.g., `1.mp4` and `1.wav`). The video should feature a person in a medium or medium close-up shot. 
 
 ```
 python main.py --audio_folder "mnt/primary data/audio" \
