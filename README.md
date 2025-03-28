@@ -5,6 +5,8 @@ The current prototype is designed to analyse the temporal alignment of spoken de
 
 ## Running the Program
 
+Primary data must comprise a video and an audio file corresponding to the same recording. This data is to be placed in `mnt/primary data`. 
+
 ```
 python main.py --audio_folder "mnt/primary data/audio" \
                --video_folder "mnt/primary data/video" \
@@ -12,6 +14,7 @@ python main.py --audio_folder "mnt/primary data/audio" \
                --output "mnt/output" \
                --max_time_diff 800
 ```
+
 
 ## Pipeline Overview
 
