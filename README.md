@@ -3,7 +3,7 @@
 
 The current prototype is designed to analyse the temporal alignment of spoken demonstrative pronouns and pointing gestures in video recordings. The workflow integrates computer vision (via MediaPipe) for gesture detection and audio processing (via a language-specific speech recognition model) to extract relevant linguistic features. The pipeline comprises multiple scripts that handle different aspects of the processing, culminating in an enriched video with annotations of detected events. 
 
-For reference, the repository includes an [ELAN](/ELAN) folder that contains the output from a more traditional annotation using the [ELAN program](https://archive.mpi.nl/tla/elan). Ultimately, the performance of the semi-automated prototype must be validated against ELAN-based annotations. 
+For reference, this repository includes an [ELAN](/ELAN) folder that contains the output from a more traditional annotation using the [ELAN program](https://archive.mpi.nl/tla/elan). Ultimately, the performance of the semi-automated prototype must be validated against ELAN-based annotations. 
 
 ## Running the Program
 
