@@ -3,11 +3,7 @@ def extract_target_word_onsets(results, demonstratives=None):
     """
     Extracts the onset times of demonstrative pronouns from the recogniser results,
     returning a list of (word, onset) tuples.
-    """    
-    if demonstratives is None:
-        demonstratives = ['der', 'die', 'das', 'den', 'dem', 'denen',
-                          'dessen', 'deren', 'dieser', 'diese',
-                          'dieses', 'diesen', 'diesem']
+    """
     word_onsets = []
     for segment in results:
         if 'result' in segment and isinstance(segment['result'], list):
