@@ -63,7 +63,7 @@ python main.py --audio_folder "mnt/primary data/audio" \
 
 ### 1. Filtering out definite articles from the extracted demonstrative pronouns
 
-Currently, the system overidentifies demonstrative pronouns, as it includes any homographs of the list of demonstrative pronouns. For instance, in German, many definite articles are wrongly included in the selection, as they have the same form as demonstrative pronouns. 
+Currently, the system overidentifies demonstrative pronouns, as it includes any homographs of the list of demonstrative pronouns. For instance, in English, German or French, many definite articles are wrongly included in the selection, as they have the same form as demonstrative pronouns. 
 
 ### 2. Enhancing the accuracy of pointing gesture detection
 
