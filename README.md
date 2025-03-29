@@ -14,7 +14,8 @@ python main.py --audio_folder "mnt/primary data/audio" \
                --video_folder "mnt/primary data/video" \
                --model "mnt/primary data/vosk-model-de-0.21" \
                --output "mnt/output" \
-               --max_time_diff 800
+               --max_time_diff 800 \
+               --demonstratives "der,die,das,den,dem,denen,dessen,deren,dieser,diese,dieses,diesen,diesem"
 ```
 
 
