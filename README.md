@@ -12,8 +12,8 @@ The system requires primary data in the form of video and corresponding audio fi
 ```
 python main.py --audio_folder "mnt/primary data/audio" \
                --video_folder "mnt/primary data/video" \
-               --demonstratives "der,die,das,den,dem,denen,dessen,deren,dieser,diese,dieses,diesen,diesem" \
                --model "mnt/primary data/vosk-model-de-0.21" \
+               --demonstratives "der,die,das,den,dem,denen,dessen,deren,dieser,diese,dieses,diesen,diesem" \
                --output "mnt/output" \
                --max_time_diff 800
 ```
