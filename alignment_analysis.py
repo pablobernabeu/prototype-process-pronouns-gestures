@@ -1,5 +1,5 @@
 
-def extract_target_word_onsets(results, demonstratives=None):
+def extract_target_word_onsets(results, words_of_interest):
     """
     Extracts the onset times of demonstrative pronouns from the recogniser results,
     returning a list of (word, onset) tuples.
@@ -10,7 +10,7 @@ def extract_target_word_onsets(results, demonstratives=None):
             for word_info in segment['result']:
                 if 'word' in word_info and 'start' in word_info:
                     word = word_info['word'].lower()
-                    if word in demonstratives:
+                    if word in words_of_interest:
                         onset_time = word_info['start'] * 1000 # Convert to ms
                         # Return a tuple of (word, onset_time)
                         word_onsets.append((word, onset_time))
