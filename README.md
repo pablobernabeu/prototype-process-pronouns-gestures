@@ -35,9 +35,9 @@ python main.py --audio_folder "mnt/primary data/audio" \
 
 ### 3. Alignment Analysis (alignment_analysis.py)
 
-- Onset times of demonstrative pronouns are compared with detected gesture apexes.
+- Onset times of demonstrative pronouns are compared with detected gesture apexes. Both categories are paired on a case-by-case basis if the distance between them is smaller than the maximum gap (`max_time_diff`).
 
-- The script calculates the temporal difference between the two.
+- The script calculates the temporal difference between the onset of the pronoun and the apex of the gesture.
 
 - Outputs a CSV file containing word-gesture alignment data.
 
