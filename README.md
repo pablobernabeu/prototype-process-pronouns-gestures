@@ -31,7 +31,7 @@ python main.py --audio_folder "mnt/primary data/audio" \
 
 ### 2. Gesture Detection (video_processing.py)
 
-- [MediaPipe’s hand landmarks estimation](https://ai.google.dev/edge/mediapipe/solutions/vision/hand_landmarker) is used to detect the apexes of pointing gestures (see [demonstration](https://mediapipe-studio.webapps.google.com/demo/hand_landmarker) of the hand landmarks detection). Specifically, pointing gestures are identified as the moment at which the wrist (i.e., hand landmark `0`) and the tip of the index finger (i.e., hand landmark `8`) are most distant from each other. 
+- [MediaPipe’s hand landmarks estimation](https://ai.google.dev/edge/mediapipe/solutions/vision/hand_landmarker) is used to detect the apexes of pointing gestures (see [demonstration](https://mediapipe-studio.webapps.google.com/demo/hand_landmarker)). Specifically, pointing gestures are identified as the moment at which the wrist (i.e., hand landmark `0`) and the tip of the index finger (i.e., hand landmark `8`) are most distant from each other. 
 
 ### 3. Alignment Analysis (alignment_analysis.py)
 
