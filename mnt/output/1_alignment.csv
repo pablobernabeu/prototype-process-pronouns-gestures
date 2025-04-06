@@ -1,4 +1,4 @@
-target_word,target_word_onset,gesture_apex,alignment_difference,target_word_context
+word_of_interest,word_of_interest_onset,gesture_apex,alignment_difference,word_of_interest_context
 die,8100.0,,,die
 das,12570.0,,,das
 dem,15000.0,15633.333333333332,-633.3333333333321,dem

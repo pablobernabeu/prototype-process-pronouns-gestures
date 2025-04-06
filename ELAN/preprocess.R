@@ -57,7 +57,7 @@ df_matched <- df_matched %>%
 df_matched$alignment_difference <- as.numeric(df_matched$alignment_difference)
 
 # Export data
-write_csv(df_matched, "preprocessed_data/alignment_data.csv", )
+write_csv(df_matched, "preprocessed_data/1_alignment_data.csv", )
 
 # Print results
 print(df_matched)

@@ -1,5 +1,5 @@
 
-def extract_target_word_onsets(results, words_of_interest):
+def extract_word_of_interest_onsets(results, words_of_interest):
     """
     Extracts the onset times of demonstrative pronouns from the recogniser results,
     returning a list of (word, onset) tuples.
@@ -32,4 +32,3 @@ def calculate_alignment(demonstrative_onsets, gesture_apex_times):
         else:
             alignments.append(None)
     return alignments
-
