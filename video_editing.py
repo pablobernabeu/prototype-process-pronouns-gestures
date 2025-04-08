@@ -26,9 +26,9 @@ def add_captions(video_path, captions, output_path):
         video = VideoFileClip(video_path)
         caption_clips = []
         for start_ms, end_ms, text in captions:
-            start_sec = start_ms / 1000  # ✅ Convert ms to seconds
-            end_sec = end_ms / 1000  # ✅ Convert ms to seconds
-            duration_sec = end_sec - start_sec  # ✅ Calculate duration in seconds
+            start_sec = start_ms / 1000  # Convert ms to seconds
+            end_sec = end_ms / 1000  # Convert ms to seconds
+            duration_sec = end_sec - start_sec  # Calculate duration in seconds
 
             txt_clip = TextClip(text, fontsize=24, color='white', bg_color='black')
             txt_clip = txt_clip.set_position(('center', 'bottom')).set_start(start_sec).set_duration(duration_sec)
@@ -49,7 +49,7 @@ def signal_gesture_peaks(video_path, gesture_peaks_ms, output_path):
         video = VideoFileClip(video_path)
         marker_clips = []
         for peak_ms in gesture_peaks_ms:
-            peak_sec = peak_ms / 1000  # ✅ Convert ms to seconds
+            peak_sec = peak_ms / 1000  # Convert ms to seconds
 
             marker = TextClip('GESTURE PEAK', fontsize=30, color='red', bg_color='yellow')
             marker = marker.set_position(('center', 'top')).set_start(peak_sec).set_duration(0.5)
