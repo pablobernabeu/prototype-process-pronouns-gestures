@@ -9,17 +9,17 @@ df <- read_csv("ELAN_export/1.mp4_PabloBernabeu.csv", col_names = FALSE) %>%
 # Rename columns
 colnames(df) <- c("modality", "onset", "offset", "duration", "demonstrative_pronoun")
 
-# Separate demonstrative pronouns and gesture apexes
+# Separate demonstrative pronouns and gesture apices
 pronouns <- df %>% filter(modality == "demonstrative_pronoun")
-apexes <- df %>% filter(modality == "gesture_apex")
+apices <- df %>% filter(modality == "gesture_apex")
 
 # Sort by onset time
 pronouns <- pronouns %>% arrange(onset)
-apexes <- apexes %>% arrange(onset)
+apices <- apices %>% arrange(onset)
 
 # Initialize match_index column
 pronouns$match_index <- NA
-apexes$match_index <- NA
+apices$match_index <- NA
 
 match_counter <- 1  # Start match index counter
 
@@ -27,7 +27,7 @@ for (i in seq_len(nrow(pronouns))) {
   pronoun_onset <- pronouns$onset[i]
   
   # Find the closest gesture apex within 2000 ms
-  potential_matches <- apexes %>%
+  potential_matches <- apices %>%
     filter(is.na(match_index)) %>%
     filter(abs(onset - pronoun_onset) <= 2000) %>%
     arrange(abs(onset - pronoun_onset))  # Sort by proximity
@@ -37,14 +37,14 @@ for (i in seq_len(nrow(pronouns))) {
     
     # Assign match_index
     pronouns$match_index[i] <- match_counter
-    apexes$match_index[apexes$onset == best_match_index] <- match_counter
+    apices$match_index[apices$onset == best_match_index] <- match_counter
     
     match_counter <- match_counter + 1  # Increment match counter
   }
 }
 
 # Combine results 
-df_matched <- bind_rows(pronouns, apexes) %>% arrange(onset)
+df_matched <- bind_rows(pronouns, apices) %>% arrange(onset)
 
 # Compute temporal difference (gesture onset - pronoun onset)
 df_matched <- df_matched %>%

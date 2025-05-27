@@ -8,7 +8,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 from audio_processing import transcribe_audio
-from video_processing import detect_multiple_gesture_apexes
+from video_processing import detect_multiple_gesture_apices
 from alignment_analysis import extract_word_of_interest_onsets, calculate_alignment
 from video_editing import merge_audio_video, add_captions, signal_gesture_peaks
 
@@ -19,13 +19,13 @@ def process_pair(audio_path, video_path, model_path, output_dir, max_time_diff, 
     Steps:
     1. Transcribe the audio and export plain text and VTT subtitles.
     2. Extract onsets of target words from the transcription.
-    3. Detect gesture apexes using computer vision.
+    3. Detect gesture apices using computer vision.
     4. Align gestures with words of interest within a defined temporal window.
     5. Extract surrounding word context from transcript for each word of interest.
     6. Plot the temporal alignment differences with annotated scatterplot.
     7. Merge audio and video into a single output file.
     8. Add subtitles as captions to the video.
-    9. Annotate gesture apexes visually in the video.
+    9. Annotate gesture apices visually in the video.
     '''
 
     # Step 1: Transcribe audio and export plain text
@@ -68,11 +68,11 @@ def process_pair(audio_path, video_path, model_path, output_dir, max_time_diff, 
     word_onsets = extract_word_of_interest_onsets(transcription_results, words_of_interest)
 
     # Step 3: Detect gesture apex frames
-    gesture_apex_times = detect_multiple_gesture_apexes(video_path)
+    gesture_apex_times = detect_multiple_gesture_apices(video_path)
 
     # Step 4 & 5: Align gestures to words and extract local context
     df_rows = []
-    used_apexes = set()
+    used_apices = set()
 
     transcript_chunks = [
         (segment['result'][0]['start'], segment['result'][-1]['end'], segment['text'])
@@ -93,14 +93,14 @@ def process_pair(audio_path, video_path, model_path, output_dir, max_time_diff, 
         if not matched_context:
             matched_context = word_of_interest
 
-        available_apexes = [
+        available_apices = [
             apex for apex in gesture_apex_times
-            if apex not in used_apexes and abs(onset_time - apex) <= max_time_diff
+            if apex not in used_apices and abs(onset_time - apex) <= max_time_diff
         ]
 
-        if available_apexes:
-            nearest_apex = min(available_apexes, key=lambda apex: abs(onset_time - apex))
-            used_apexes.add(nearest_apex)
+        if available_apices:
+            nearest_apex = min(available_apices, key=lambda apex: abs(onset_time - apex))
+            used_apices.add(nearest_apex)
             alignment_diff = onset_time - nearest_apex
         else:
             nearest_apex = None
@@ -172,7 +172,7 @@ def process_pair(audio_path, video_path, model_path, output_dir, max_time_diff, 
     captioned_video_path = os.path.join(output_dir, f"{base_name}_captioned.mp4")
     add_captions(merged_video_path, captions, captioned_video_path)
 
-    # Step 9: Annotate gesture apexes on video
+    # Step 9: Annotate gesture apices on video
     final_video_path = os.path.join(output_dir, f"{base_name}_final.mp4")
     signal_gesture_peaks(captioned_video_path, gesture_apex_times, final_video_path)
 

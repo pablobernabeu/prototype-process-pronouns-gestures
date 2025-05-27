@@ -3,9 +3,9 @@ import mediapipe as mp
 import numpy as np
 import logging
 
-def detect_multiple_gesture_apexes(video_path, threshold=0.02, min_frames=2, min_gap_frames=5):
+def detect_multiple_gesture_apices(video_path, threshold=0.02, min_frames=2, min_gap_frames=5):
     '''
-    Detects multiple gesture apexes from a video file using MediaPipe.
+    Detects multiple gesture apices from a video file using MediaPipe.
     
     Arguments:
         video_path (str): Path to the video file.
@@ -88,5 +88,5 @@ def detect_multiple_gesture_apexes(video_path, threshold=0.02, min_frames=2, min
         return apex_times
 
     except Exception as e:
-        logging.error(f"Error in detecting multiple gesture apexes: {e}")
+        logging.error(f"Error in detecting multiple gesture apices: {e}")
         return []
